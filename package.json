@@ -1,7 +1,7 @@
 {
     "name": "hotel-reservations-api",
     "version": "1.0.0",
-    "description": "API for hotel reservations management",
+    "description": "API para reservas hoteleras",
     "main": "server.js",
     "scripts": {
         "start": "node server.js",

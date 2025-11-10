@@ -12,9 +12,9 @@ const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Hotel Reservations API',
+            title: 'Reservas Hoteleras API',
             version: '1.0.0',
-            description: 'API for managing hotel reservations'
+            description: 'API para reservas hoteleras'
         },
         servers: [
             {

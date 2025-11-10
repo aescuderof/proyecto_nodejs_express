@@ -2,15 +2,15 @@
 let reservas = [
     {
         id: 1,
-        hotel: "Hotel Paraíso",
+        hotel: "Hotel Mario Hugo",
         tipoHabitacion: "doble",
         numHuespedes: 2,
         fechaInicio: "2023-05-15",
         fechaFin: "2023-05-20",
         estado: "confirmada",
-        nombreHuesped: "Juan Pérez",
-        email: "juan@example.com",
-        telefono: "123456789"
+        nombreHuesped: "Juan Carlos Bodoque",
+        email: "juancarlos@bodoque.com",
+        telefono: "9988776655"
     }
 ];
 
