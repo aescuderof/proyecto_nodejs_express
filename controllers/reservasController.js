@@ -1,4 +1,3 @@
-// Data store
 let reservas = [
     {
         id: 1,
@@ -14,7 +13,6 @@ let reservas = [
     }
 ];
 
-// Crear reserva
 exports.create = async (req, res) => {
     const nuevaReserva = req.body
     nuevaReserva.id = reservas.length > 0 ? Math.max(...reservas.map(r => r.id)) + 1 : 1
@@ -26,7 +24,6 @@ exports.create = async (req, res) => {
     })
 }
 
-// Obtener todas las reservas
 exports.readAll = async (req, res) => {
     res.json({
         msg: 'Reservas obtenidas con éxito.',
@@ -34,7 +31,6 @@ exports.readAll = async (req, res) => {
     })
 }
 
-// Obtener una reserva específica
 exports.readOne = async (req, res) => {
     const reservaId = parseInt(req.params.id)
     const reserva = reservas.find(r => r.id === reservaId)
@@ -49,7 +45,6 @@ exports.readOne = async (req, res) => {
     })
 }
 
-// Actualizar una reserva
 exports.update = async (req, res) => {
     const reservaId = parseInt(req.params.id)
     const reservaIndex = reservas.findIndex(r => r.id === reservaId)
@@ -65,7 +60,6 @@ exports.update = async (req, res) => {
     })
 }
 
-// Eliminar una reserva
 exports.delete = async (req, res) => {
     const reservaId = parseInt(req.params.id)
     const reservaIndex = reservas.findIndex(r => r.id === reservaId)
@@ -78,7 +72,6 @@ exports.delete = async (req, res) => {
     res.json({ msg: 'Reserva eliminada con éxito.' })
 }
 
-// Filtros de búsqueda
 exports.filter = async (req, res) => {
     const { hotel, fecha_inicio, fecha_fin, tipo_habitacion, estado, num_huespedes } = req.query
 
