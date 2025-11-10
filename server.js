@@ -1,19 +1,37 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const reservationsRouter = require('./routes/reservations');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const express = require('express')
+const cors = require('cors')
+const swaggerUI = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
+const path = require('path')
 
-app.use(express.json());
+require('dotenv').config()
+const port = process.env.PORT || 3000
+const serverUrl = process.env.SERVER_URL || `http://localhost:${port}`
 
-app.use('/api/reservations', reservationsRouter);
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Hotel Reservations API',
+            version: '1.0.0',
+            description: 'API for managing hotel reservations'
+        },
+        servers: [
+            {
+                url: serverUrl
+            }
+        ]
+    },
+    apis: [`${path.join(__dirname, './routes/*.js')}`]
+}
 
-// Swagger UI
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const swaggerDocs = swaggerJsDoc(swaggerOptions)
+const app = express()
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Hotel Reservations service running on port ${PORT}`);
-  console.log(`API docs available at http://localhost:${PORT}/docs`);
-});
+app.use(cors())
+app.use(express.json())
+
+app.use('/api/reservas', require('./routes/reservas'))
+app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+
+app.listen(port, () => console.log(`Servidor corriendo en el puerto ${port}`))
